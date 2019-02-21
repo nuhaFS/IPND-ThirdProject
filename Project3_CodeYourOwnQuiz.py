@@ -37,8 +37,8 @@ def ClosingText(results):
 
 
 def word_in_pos(word, parts_of_speech):
-    ''' Checking each word for a match for the part of speech
-     to be replaced.'''
+    ''' Checking each word for a match for
+    the part of speech to be replaced.'''
 
     for pos in parts_of_speech:
         if pos in word:
@@ -48,25 +48,25 @@ def word_in_pos(word, parts_of_speech):
 
 def Check_input(u_input, replacement, correct_answer, word, l):
     ''' Checking the user input to make sure it is an integer,
-     matches the correct answer.'''
-
+    matches the correct answer.'''
+    # user_input = int(u_input)
     if u_input.isdigit():
         x = int(u_input)
         if x != correct_answer:
-            print text_format("Incorrect answer.. Try again!")
+            print(text_format("Incorrect answer.. Try again!"))
             return False
         else:
-            print text_format("Correct answer!")
+            print(text_format("Correct answer!"))
             word = word.replace(replacement, str(u_input))
             l.append(word)
             return True
     else:
-        print text_format("Please, enter a number!")
+        print(text_format("Please, enter a number!"))
         return False
 
 
 def start_program(user_input, questions):
-    ''' Matching the user chosen level and returning its questions'''
+    ''' Matching the user chosen level and returnin its questions'''
 
     if user_input is not None:
         if user_input in questions.keys():
@@ -79,15 +79,15 @@ def start_program(user_input, questions):
 
 
 def do_quiz(q_str, parts_of_speech, correct_answers):
-    ''' Comparing the user answers to the correct ones.
-    Replacing the parts of speech with the correct answers.
-    Ending the quiz.'''
-    # Printing the correct answers for testing the script
-    print text_format(" List of correct answers" + str(correct_answers))
+    ''' Comparing the users answers to the correct ones.
+        Replacing th parts of speech with the correct asnwers.
+        Ending the quiz '''
+
+    print(text_format(" List of correct answers" + str(correct_answers)))
 
     replaced = []
-
     q_str = q_str.split()
+
     for word in q_str:
 
         replacement = word_in_pos(word, parts_of_speech)
@@ -98,10 +98,10 @@ def do_quiz(q_str, parts_of_speech, correct_answers):
             # Displaying the new string of quiz with the entered answers
             starting_point = len(replaced)
             new_str = replaced + q_str[starting_point:]
-            print " ".join(new_str)
+            print(" ".join(new_str))
 
             # User input
-            usr_input2 = raw_input("Your answer for " + replacement + " is...")
+            usr_input2 = input("Your answer for " + replacement + " is...")
             if Check_input(usr_input2, replacement,
                            correct_answer, word, replaced):
                 break
@@ -114,10 +114,10 @@ def do_quiz(q_str, parts_of_speech, correct_answers):
 
 while True:
     # Returning user_input1 in lowercase letters
-    usr_input1 = (raw_input('''Hello user, please select a quiz level:
+    user_input1 = (input('''Hello user, please select a quiz level:
                     easy - intermediate - hard''')).lower()
-    if start_program(usr_input1, quizQuestion):
+    if start_program(user_input1, quizQuestion):
 
-        Question_str, Answers = start_program(usr_input1, quizQuestion)
-        print do_quiz(Question_str, parts_of_speech1, Answers)
+        Question_str, Answers = start_program(user_input1, quizQuestion)
+        print(do_quiz(Question_str, parts_of_speech1, Answers))
         break
