@@ -23,9 +23,9 @@ class style:
     END = '\033[0m'
 
 
-def text_format(a):
+def text_format(s):
     # Adding lines to text
-    return style.BOLD + "\n" + a + "\n" + style.END
+    return style.BOLD + "\n" + s + "\n" + style.END
 
 
 def ClosingText(results):
@@ -49,7 +49,7 @@ def word_in_pos(word, parts_of_speech):
 def Check_input(u_input, replacement, correct_answer, word, l):
     ''' Checking the user input to make sure it is an integer,
     matches the correct answer.'''
-    # user_input = int(u_input)
+
     if u_input.isdigit():
         x = int(u_input)
         if x != correct_answer:
@@ -66,7 +66,7 @@ def Check_input(u_input, replacement, correct_answer, word, l):
 
 
 def start_program(user_input, questions):
-    ''' Matching the user chosen level and returnin its questions'''
+    ''' Matching the user chosen level and returning its questions'''
 
     if user_input is not None:
         if user_input in questions.keys():
@@ -101,7 +101,7 @@ def do_quiz(q_str, parts_of_speech, correct_answers):
             print(" ".join(new_str))
 
             # User input
-            usr_input2 = input("Your answer for " + replacement + " is...")
+            usr_input2 = input("Your answer for %s is..." % replacement)
             if Check_input(usr_input2, replacement,
                            correct_answer, word, replaced):
                 break
